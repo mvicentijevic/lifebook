@@ -10,6 +10,9 @@
                     <option value="ms">Ms</option>
                 </select><br>
                 <input type="text" name="first_name" placeholder="first name" class="form-control"><br>
+                <?php if(isset($first_name_error)) : ?>
+                    <p class="text-danger"><?php echo $first_name_error; ?></p>
+                <?php endif; ?>
                 <input type="text" name="last_name" placeholder="last name" class="form-control"><br>
                 <input type="text" name="email" placeholder="email" class="form-control"><br>
                 <input type="password" name="password" placeholder="password" class="form-control"><br>

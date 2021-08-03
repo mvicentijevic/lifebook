@@ -6,8 +6,9 @@ require "../core/init.php";
 // if (!isset($_SESSION['id'])) {
 //     header("Location: /lifebook/index.php");
 // }
+
 if (!isLogged()) {
     header("Location: /lifebook/index.php");
 }
 
-echo "User Home";
+require "./views/home.view.php";

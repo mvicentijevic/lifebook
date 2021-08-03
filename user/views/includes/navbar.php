@@ -5,16 +5,11 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Settings
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Action</a></li>
@@ -24,15 +19,12 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link disabled text-info" href="#" tabindex="-1" aria-disabled="true">Dimitrije</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="logout.php" tabindex="-1" aria-disabled="true">Logout</a>
         </li>
       </ul>
-        <?php if (!isLogged()) : ?>
-            <a href="" class="btn btn-outline-primary">Login</a>
-            <a href="register.php" class="btn btn-outline-info">Register</a>
-        <?php else : ?>
-            <a href="user/home.php" class="btn btn-outline-warning">Dashboard</a>
-        <?php endif; ?>
     </div>
   </div>
 </nav>

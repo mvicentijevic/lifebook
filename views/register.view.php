@@ -29,6 +29,9 @@
                 <?php if(isset($password_repeat_error)) : ?>
                     <p class="text-danger"><?php echo $password_repeat_error; ?></p>
                 <?php endif; ?>
+                <?php if(isset($password_dont_match)) : ?>
+                    <p class="text-danger"><?php echo $password_dont_match; ?></p>
+                <?php endif; ?>
                 <button class="btn btn-primary form-control">Register</button>
             </form>
         </div>

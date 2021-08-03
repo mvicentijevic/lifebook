@@ -35,6 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     } else {
         $password_repeat = $_POST['password_repeat'];
     }
+    if ($_POST['password'] !== $_POST['password_repeat']) {
+        $password_dont_match = "Password dont match";
+        array_push($errors, $password_dont_match);
+    }
+    if (count($errors) == 0) {
+        // registrujemo korisnika - pozivamo function
+        register_user($_POST['title'], $first_name, $last_name, $email, $password);
+    }
 }
 
 require "views/register.view.php";

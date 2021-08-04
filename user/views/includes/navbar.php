@@ -12,7 +12,7 @@
             Settings
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Account</a></li>
+            <li><a class="dropdown-item" href="user/account.php">Account</a></li>
             <li><hr class="dropdown-divider"></li>
             <li class="nav-item">
           <a class="nav-link text-danger" href="logout.php" tabindex="-1" aria-disabled="true">Logout</a>

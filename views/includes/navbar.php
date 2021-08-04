@@ -28,7 +28,7 @@
         </li>
       </ul>
         <?php if (!isLogged()) : ?>
-            <a href="" class="btn btn-outline-primary">Login</a>
+            <a href="login.php" class="btn btn-outline-primary">Login</a>
             <a href="register.php" class="btn btn-outline-info">Register</a>
         <?php else : ?>
             <a href="user/home.php" class="btn btn-outline-warning">Dashboard</a>

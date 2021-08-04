@@ -27,3 +27,30 @@ function isLogged()
         return false;
     }
 }
+
+function login_user($email, $password) 
+{
+    global $db;
+    $user_password = getUserPassword($email);
+    // if it is false or $password
+    if (!$user_password) {
+        return false;
+    }
+
+}
+
+function getUserPassword($email) 
+{
+    global $db;
+    $sql = $db->prepare("SELECT (password) FROM users WHERE email=?");
+    $sql->bind_param("s", $email);
+    $sql->execute();
+
+    $result = $sql->get_result(); // mysql result set
+    if ($result->num_rows == 0) {
+        return false;
+    }
+    $password = $result->fetch_assoc()['password'];
+
+    return $password;
+}

@@ -12,18 +12,17 @@
             Settings
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Account</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li class="nav-item">
+          <a class="nav-link text-danger" href="logout.php" tabindex="-1" aria-disabled="true">Logout</a>
+        </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled text-info" href="#" tabindex="-1" aria-disabled="true">Dimitrije</a>
+          <a class="nav-link disabled text-info" href="#" tabindex="-1" aria-disabled="true"><?php echo $user['first_name'] ?></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-danger" href="logout.php" tabindex="-1" aria-disabled="true">Logout</a>
-        </li>
+        
       </ul>
     </div>
   </div>

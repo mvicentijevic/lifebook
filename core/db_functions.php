@@ -72,3 +72,18 @@ function getUserPassword($email)
 
     return $password;
 }
+
+function getUser($id) {
+    global $db;
+    $sql = $db->prepare("SELECT * FROM users WHERE id=?");
+    $sql->bind_param("i", $id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        $result = $sql->get_result();
+        $user = $result->fetch_assoc();
+        return $user;
+    } else {
+        header("Location: error.php");
+    }
+}

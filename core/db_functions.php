@@ -36,6 +36,24 @@ function login_user($email, $password)
     if (!$user_password) {
         return false;
     }
+    if(!password_verify($password, $user_password)) {
+        return false;
+    }
+    // nalazimo id korisnika koji ima i takav email i takav password
+    // 'upisujemo' ga u sesiju
+    $sql = $db->prepare("SELECT (id) FROM users WHERE email=? AND password=?");
+    $sql->bind_param("ss", $email, $user_password);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        $result = $sql->get_result();
+        $id = $result->fetch_assoc()['id'];
+        // LOGIN //
+        $_SESSION['id'] = $id;
+        return true;
+    } else {
+        header("Location: error.php");
+    }
 
 }
 

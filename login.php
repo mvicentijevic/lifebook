@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (count($errors) == 0) {
         // registrujemo korisnika - pozivamo function
         if (login_user($email, $password)) {
-
+            header("Location: user/home.php");
         } else {
             $wrong_email_pass = "Wrong email password combination";
         }

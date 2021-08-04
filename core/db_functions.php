@@ -87,3 +87,22 @@ function getUser($id) {
         header("Location: error.php");
     }
 }
+
+function change_title($user) {
+    global $db;
+    $title = "";
+    if ($user['title'] == "mr") {
+        $title = "ms";
+    } else {
+        $title = "mr";
+    }
+    $sql = $db->prepare("UPDATE users SET title=? WHERE id=?");
+    $sql->bind_param("si", $title, $user['id']);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

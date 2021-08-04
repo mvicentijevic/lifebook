@@ -9,7 +9,7 @@
             </div>
             <div class="col-8">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="text-transform: uppercase"><?php echo $user['title']; ?> <a href="" class="btn btn-sm btn-warning float-end">CHANGE</a></li>
+                    <li class="list-group-item" style="text-transform: uppercase"><?php echo $user['title']; ?> <a href="user/change_title.php" class="btn btn-sm btn-warning float-end">CHANGE</a></li>
                     <li class="list-group-item"><?php echo $user['first_name']. " ".$user['last_name']; ?> </li>
                     <li class="list-group-item"><?php echo $user['email']; ?> <a href="" class="btn btn-sm btn-warning float-end">CHANGE</a> </li>
                     <li class="list-group-item">Password <a href="" class="btn btn-sm btn-warning float-end">CHANGE</a> </li>

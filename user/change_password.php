@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     
     if (count($errors) == 0) {
-        if (change_password($password, $new_password, $user, $user['id'])) {
+        if (change_password($password, $new_password, $user)) {
             $success = "Password changed";
         } else {
             $wrong = "Something went wrong";

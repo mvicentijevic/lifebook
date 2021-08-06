@@ -120,7 +120,7 @@ function change_email($email, $id) {
     }
 }
 
-function change_password($password, $new_password, $user, $id) {
+function change_password($password, $new_password, $user) {
     global $db;
     if (!password_verify($password, $user['password'])) {
         return false;
@@ -129,7 +129,7 @@ function change_password($password, $new_password, $user, $id) {
     $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
     $sql = $db->prepare("UPDATE users SET password=?, updated_at=NOW() WHERE id=?");
-    $sql->bind_param("si", $new_password_hash, $id);
+    $sql->bind_param("si", $new_password_hash, $user['id']);
     $sql->execute();
 
     if ($sql->errno == 0) {
@@ -138,3 +138,4 @@ function change_password($password, $new_password, $user, $id) {
         return false;
     }
 }
+

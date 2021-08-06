@@ -96,8 +96,21 @@ function change_title($user) {
     } else {
         $title = "mr";
     }
-    $sql = $db->prepare("UPDATE users SET title=? WHERE id=?");
+    $sql = $db->prepare("UPDATE users SET title=?, updated_at=NOW() WHERE id=?");
     $sql->bind_param("si", $title, $user['id']);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function change_email($email, $id) {
+    global $db;
+    $sql = $db->prepare("UPDATE users SET email=?, updated_at=NOW() WHERE id=?");
+    $sql->bind_param("si", $email, $id);
     $sql->execute();
 
     if ($sql->errno == 0) {

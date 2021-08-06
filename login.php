@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if (count($errors) == 0) {
-        // registrujemo korisnika - pozivamo function
+        // login
         if (login_user($email, $password)) {
             header("Location: user/home.php?success=1");
         } else {

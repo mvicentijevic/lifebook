@@ -21,4 +21,4 @@
         </div>
     </div>
 </div>
-<?php require "views/includes/head.php"; ?>
+<?php require "views/includes/bottom.php"; ?>

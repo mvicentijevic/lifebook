@@ -119,3 +119,22 @@ function change_email($email, $id) {
         return false;
     }
 }
+
+function change_password($password, $new_password, $user, $id) {
+    global $db;
+    if (!password_verify($password, $user['password'])) {
+        return false;
+    }
+
+    $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+    $sql = $db->prepare("UPDATE users SET password=?, updated_at=NOW() WHERE id=?");
+    $sql->bind_param("si", $new_password_hash, $id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

@@ -1,5 +1,6 @@
 <?php
 
+$title = "Change email";
 require "../core/init.php";
 
 if (!isLogged()) {

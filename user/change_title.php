@@ -7,6 +7,7 @@ if (!isLogged()) {
 }
 
 $user = getUser($_SESSION['id']);
+$posts = getAllPostsFromUser($user['id']);
 
 if (change_title($user)) {
     header("Location: account.php");

@@ -27,3 +27,19 @@ function savePost($title, $body, $image, $user_id, $cat_id, $public) {
         return false;
     }
 }
+
+function getAllPostsFromUser($id) {
+    global $db;
+    $sql = $db->prepare("SELECT * FROM posts WHERE user_id=? ORDER BY created_at DESC");
+    $sql->bind_param("i", $id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        $result = $sql->get_result();
+        $posts = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $posts;
+    } else {
+        return false;
+    }
+}

@@ -12,5 +12,6 @@ if (!isLogged()) {
 }
 
 $user = getUser($_SESSION['id']);
+$posts = getAllPostsFromUser($user['id']);
 
 require "./views/home.view.php";

@@ -33,7 +33,7 @@
                             </select><br>
                             <select name="public" class="form-control">
                                 <option value="1">Public</option>
-                                <option value="1">Private</option>
+                                <option value="0">Private</option>
                             </select><br>
                             <?php if(isset($ups)) : ?>
                                 <p class="text-danger"><?php echo $ups; ?></p>

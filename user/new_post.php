@@ -7,6 +7,7 @@ if (!isLogged()) {
 }
 
 $user = getUser($_SESSION['id']);
+$posts = getAllPostsFromUser($user['id']);
 
 $categories = getCategories();
 
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
                 // save post to database
                 if (savePost($title, $body, $target_name, $user['id'], $_POST['category'], $_POST['public'])) {
-                    dd("Post saved");
+                    header("Location: all_posts.php");
                 } else {
                     $ups = "Ups, something went wrong";
                 }

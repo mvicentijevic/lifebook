@@ -23,15 +23,21 @@
                             <?php if(isset($image_error)) : ?>
                                 <p class="text-danger"><?php echo $image_error; ?></p>
                             <?php endif; ?>
+                            <?php if(isset($not_valid_type)) : ?>
+                                <p class="text-danger"><?php echo $not_valid_type; ?></p>
+                            <?php endif; ?>
                             <select name="category" class="form-control">
                                 <?php foreach($categories as $cat) :?>
-                                    <option value="<?php $cat['id']; ?>"><?php echo $cat['name']; ?></option>
+                                    <option value="<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></option>
                                 <?php endforeach; ?>
                             </select><br>
                             <select name="public" class="form-control">
                                 <option value="1">Public</option>
                                 <option value="1">Private</option>
                             </select><br>
+                            <?php if(isset($ups)) : ?>
+                                <p class="text-danger"><?php echo $ups; ?></p>
+                            <?php endif; ?>
                             <button type="submit" class="btn btn-info form-control">Post</button>
                         </form>
                     </div>

@@ -41,7 +41,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $target_file = $target_dir.$target_name;
 
         // todo everything
-        move_uploaded_file($_FILES['file']['tmp_name'], $target_file);
+        // get image extension
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        // define extensions
+        $extensions_arr = ["png", "gif", "jpg", "jpeg"];
+        if (in_array($imageFileType, $extensions_arr)) {
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+                // save post to database
+                if (savePost($title, $body, $target_name, $user['id'], $_POST['category'], $_POST['public'])) {
+                    dd("Post saved");
+                } else {
+                    $ups = "Ups, something went wrong";
+                }
+            } else {
+                $ups = "Ups, something went wrong";
+            }
+        } else {
+            $not_valid_type = "Image is not valid type";
+        }
+
+
+        
 
     }
 }

@@ -56,3 +56,33 @@ function deletePost($id) {
         return false;
     }
 }
+
+function getSinglePost($post_id) {
+    global $db;
+    $sql = $db->prepare("SELECT * FROM posts WHERE id=?");
+    $sql->bind_param("i", $post_id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        $result = $sql->get_result();
+        $post = $result->fetch_assoc();
+        return $post;
+    } else {
+        return false;
+    }
+}
+
+function editPost($title, $body, $category_id, $public, $user_id, $post_id) {
+    global $db;
+    $sql = $db->prepare("UPDATE posts 
+                        SET title=?, body=?, category_id=?, public=?, user_id=?, updated_at=NOW() 
+                        WHERE id=?");
+    $sql->bind_param("ssiiii", $title, $body, $category_id, $public, $user_id, $post_id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

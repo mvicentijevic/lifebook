@@ -20,8 +20,8 @@
                                     <img src="uploads/<?php echo $post['image']; ?>" class="img-fluid">
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-sm btn-warning float-start"><i class="far fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger float-end"><i class="fas fa-minus-circle"></i></button>
+                                    <a href="user/edit_post.php" class="btn btn-sm btn-warning float-start"><i class="far fa-edit"></i></a>
+                                    <a href="user/delete_post.php?id=<?php echo $post['id']; ?>" class="btn btn-sm btn-danger float-end"><i class="fas fa-minus-circle"></i></a>
                                 </div>
                             </div>
                         </div>

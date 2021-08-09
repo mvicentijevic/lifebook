@@ -43,3 +43,16 @@ function getAllPostsFromUser($id) {
         return false;
     }
 }
+
+function deletePost($id) {
+    global $db;
+    $sql = $db->prepare("DELETE FROM posts WHERE id=?");
+    $sql->bind_param("i", $id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

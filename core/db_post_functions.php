@@ -57,20 +57,20 @@ function deletePost($id) {
     }
 }
 
-function getSinglePost($post_id) {
-    global $db;
-    $sql = $db->prepare("SELECT * FROM posts WHERE id=?");
-    $sql->bind_param("i", $post_id);
-    $sql->execute();
+// function getSinglePost($post_id) {
+//     global $db;
+//     $sql = $db->prepare("SELECT * FROM posts WHERE id=?");
+//     $sql->bind_param("i", $post_id);
+//     $sql->execute();
 
-    if ($sql->errno == 0) {
-        $result = $sql->get_result();
-        $post = $result->fetch_assoc();
-        return $post;
-    } else {
-        return false;
-    }
-}
+//     if ($sql->errno == 0) {
+//         $result = $sql->get_result();
+//         $post = $result->fetch_assoc();
+//         return $post;
+//     } else {
+//         return false;
+//     }
+// }
 
 function editPost($title, $body, $category_id, $public, $user_id, $post_id) {
     global $db;
@@ -116,6 +116,50 @@ function getAllPublicPostsWithCategory($id) {
                         ON p.user_id = u.id 
                         AND p.public = 1
                         WHERE p.category_id = ?
+                        ");
+    $sql->bind_param("i", $id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        $result = $sql->get_result();
+        $posts = $result->fetch_all(MYSQLI_ASSOC);
+        return $posts;
+    } else {
+        return false;
+    }
+}
+
+function getSinglePost($id) {
+    global $db;
+    $sql = $db->prepare("SELECT p.id, p.title, p.body, p.image, p.user_id, p.created_at, p.category_id,
+                        u.id AS userId, u.first_name, u.last_name
+                        FROM posts p
+                        INNER JOIN users u
+                        ON p.user_id = u.id 
+                        WHERE p.id = ?
+                        ");
+    $sql->bind_param("i", $id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        $result = $sql->get_result();
+        $post = $result->fetch_assoc();
+        return $post;
+    } else {
+        return false;
+    }
+}
+
+function getAllPublicPostsFromUser($id) {
+
+    global $db;
+    $sql = $db->prepare("SELECT p.id, p.title, p.body, p.image, p.user_id, p.created_at, p.category_id,
+                        u.id AS userId, u.first_name, u.last_name
+                        FROM posts p
+                        INNER JOIN users u
+                        ON p.user_id = u.id 
+                        AND p.public = 1
+                        WHERE u.id = ?
                         ");
     $sql->bind_param("i", $id);
     $sql->execute();

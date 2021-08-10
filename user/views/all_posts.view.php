@@ -1,5 +1,6 @@
 <?php require "./views/includes/head.php"; ?>
 <?php require "./views/includes/navbar.php"; ?>
+<?php // require ROOT."/user/views/includes/head.php"; ?>
 
     <div class="container">
         <div class="row">
@@ -21,7 +22,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <a href="user/edit_post.php?id=<?php echo $post['id']; ?>" class="btn btn-sm btn-warning float-start"><i class="far fa-edit"></i></a>
-                                    <a href="user/delete_post.php?id=<?php echo $post['id']; ?>" class="btn btn-sm btn-danger float-end"><i class="fas fa-minus-circle"></i></a>
+                                    <a href="user/delete_post.php?id=<?php echo $post['id']; ?>&image=<?php echo $post['image'] ?>" class="btn btn-sm btn-danger float-end"><i class="fas fa-minus-circle"></i></a>
                                 </div>
                             </div>
                         </div>

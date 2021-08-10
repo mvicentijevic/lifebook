@@ -106,3 +106,25 @@ function getAllPublicPosts() {
         return false;
     }
 }
+
+function getAllPublicPostsWithCategory($id) {
+    global $db;
+    $sql = $db->prepare("SELECT p.id, p.title, p.body, p.image, p.user_id, p.created_at, p.category_id,
+                        u.id AS userId, u.first_name, u.last_name
+                        FROM posts p
+                        INNER JOIN users u
+                        ON p.user_id = u.id 
+                        AND p.public = 1
+                        WHERE p.category_id = ?
+                        ");
+    $sql->bind_param("i", $id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        $result = $sql->get_result();
+        $posts = $result->fetch_all(MYSQLI_ASSOC);
+        return $posts;
+    } else {
+        return false;
+    }
+}

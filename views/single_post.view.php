@@ -24,6 +24,26 @@
                             <span class="badge btn-primary"><i class="far fa-thumbs-up"></i> <?php echo $likes; ?></span> 
                         <?php endif; ?>
                     </div>
+                    <?php if (isLogged()) :?>
+                        <div class="card-footer">
+                            Comments
+                            <form action="new_comment.php" method="POST">
+                                <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                                <textarea name="body" class="form-control" cols="30" rows="1"></textarea>
+                                <button class="btn btn-primary m-2">Post</button>
+                            </form>
+                        </div>
+                    <?php endif; ?>
+                    <div class="card-footer">
+                        <?php foreach($comments as $comment) :?>
+                            <div class="card-header">
+                                <dl>
+                                    <dd><?php echo $comment['first_name'] ?></dd>
+                                    <dd><?php echo $comment['body'] ?></dd>
+                                </dl>
+                            </div> 
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>

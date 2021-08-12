@@ -220,3 +220,36 @@ function getLikes($post_id) {
         header("Location: error.php");
     }
 }
+
+function userComment($post_id, $body) {
+    global $db;
+    $sql = $db->prepare("INSERT INTO comments (user_id, post_id, body) VALUES (?, ?, ?)");
+    $sql->bind_param("iis", $_SESSION['id'], $post_id, $body);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getPostComments($post_id) {
+    global $db;
+    $sql = $db->prepare("SELECT c.body, c.created_at, u.first_name, u.last_name 
+                        FROM comments c 
+                        JOIN users u 
+                        ON c.user_id = u.id
+                        WHERE c.post_id = ?
+                        ");
+    $sql->bind_param("i", $post_id);
+    $sql->execute();
+
+    if ($sql->errno == 0) {
+        $result = $sql->get_result();
+        $comments = $result->fetch_all(MYSQLI_ASSOC);
+        return $comments;
+    } else {
+        header("Location: error.php");
+    }
+}

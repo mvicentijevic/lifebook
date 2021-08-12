@@ -17,6 +17,13 @@
                         <h3 class="text-center"><?php echo $post['title']; ?></h3>
                         <p class="text-center"><?php echo $post['body']; ?></p>
                     </div>
+                    <div class="card-footer">
+                        <?php if(isLogged() && !voted($post['id'])) : ?>
+                            <a href="voteUp.php?post_id=<?php echo $post['id']; ?>" class="badge btn-primary"><i class="far fa-thumbs-up"></i> <?php echo $likes; ?></a>
+                        <?php else : ?>
+                            <span class="badge btn-primary"><i class="far fa-thumbs-up"></i> <?php echo $likes; ?></span> 
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
